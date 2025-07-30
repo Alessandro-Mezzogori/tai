@@ -162,7 +162,7 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() and args.cuda else "cpu")
 
     # env setup
-    env = importlib.import_module(f"pettingzoo.atari.{args.env_id}").parallel_env()
+    env = importlib.import_module(f"pettingzoo.atari.{args.env_id}").parallel_env(render_mode='human')
     env = ss.max_observation_v0(env, 2)
     env = ss.frame_skip_v0(env, 4)
     env = ss.clip_reward_v0(env, lower_bound=-1, upper_bound=1)
